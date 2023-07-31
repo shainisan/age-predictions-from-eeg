@@ -19,6 +19,8 @@ This project uses the EEG dataset available on OpenNeuro with the Accession Numb
 - Sessions: 2
 - Participants: 111
 
+The dataset contains resting-state EEG.
+
 You can find more about the dataset [here](https://openneuro.org/datasets/ds003775/versions/1.2.1).
 
 To download the dataset, you can use the following command:
@@ -35,7 +37,7 @@ Certainly, here's an expanded version of that section:
 
 ## Running the MNE-BIDS Pipeline
 
-The MNE-BIDS Pipeline is a powerful tool for processing and analyzing M/EEG data. It leverages the Brain Imaging Data Structure (BIDS) standard to ensure that the structure of the data and metadata is consistent and in a format that's accessible for further analysis. The pipeline takes raw EEG data as input and processes it through various stages including filtering, artifact rejection, epoching, and more.
+The MNE-BIDS Pipeline is a powerful tool for processing and analyzing M/EEG data. It leverages the Brain Imaging Data Structure (BIDS) standard to ensure that the structure of the data and metadata is consistent and in a format that's accessible for further analysis. The pipeline takes raw EEG data as input, and processes it through various stages including filtering, artifact rejection, epoching, and more, to produce preprocessed data ready for feature extraction and modeling.
 
 Install required dependencies first:
 
@@ -103,19 +105,18 @@ The features extracted from the EEG data include:
 
 ---
 
-## Approaches Used
+# Approaches Used
 Two distinct approaches were adopted for this project - one focusing on handcrafted features and the other based on deep learning.
 
-# Approach 1: Handcrafted Features
-The first approach emphasizes on the utilization of a-priori defined features, which are inspired by theoretical and empirical results in neuroscience and neural engineering. The M/EEG data is summarized in a rigid fashion, aggregating across sensors, time, and frequencies or by visiting specific regions of interest.
+## Approach 1: Handcrafted Features
+In this approach, a series of machine learning models were trained on these features, with the SVM model achieving the best performance.
 
 This is in the notebook `ML_features.ipynb`.
 
-# Approach 2: Deep Learning
-The second approach pertains to modeling strategies where the outcome is mapped directly from the raw signals, without employing separate a priori feature-defining procedures. Multiple layers of nonlinear transformations are estimated end-to-end to successively summarize and compress the input data.
+## Approach 2: Deep Learning
+The second approach made use of ConvNets, achieving a mean absolute error of 3.2, a significant improvement over the handcrafted feature approach. However, due to the limited dataset size and computational resources, these results should be interpreted cautiously.
 
-The architectures used for this benchmark are Convolutional Neural Networks (ConvNets), specifically ShallowFBCSPNet (BD-Shallow) and Deep4Net (BD-Deep). The BD-Shallow model was inspired by the filter bank common spatial pattern (FBCSP) algorithm. It was designed to extract frequency-specific power features, which makes it suitable for this age regression task.
-
+### Credit
 The functions `create_model` and `create_estimator` that were used for the deep learning approach were taken from this [GitHub repository](https://github.com/meeg-ml-benchmarks/brain-age-benchmark-paper/blob/c57eba38c8b90dac9354f0f4f8148dbed7e56029/deep_learning_utils.py#L529). These functions were crucial for creating and compiling the model.
 
 This is in the notebook `Deep_learning_braindecode.ipynb`
