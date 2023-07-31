@@ -117,6 +117,6 @@ This is in the notebook `ML_features.ipynb`.
 The second approach made use of ConvNets, achieving a mean absolute error of 3.2, a significant improvement over the handcrafted feature approach. However, due to the limited dataset size and computational resources, these results should be interpreted cautiously.
 
 ### Credit
-The functions `create_model` and `create_estimator` that were used for the deep learning approach were taken from this [GitHub repository](https://github.com/meeg-ml-benchmarks/brain-age-benchmark-paper/blob/c57eba38c8b90dac9354f0f4f8148dbed7e56029/deep_learning_utils.py#L529). These functions were crucial for creating and compiling the model.
+The functions `create_model` and `create_estimator` that were used for the deep learning approach were taken from this [GitHub repository](https://github.com/meeg-ml-benchmarks/brain-age-benchmark-paper/blob/c57eba38c8b90dac9354f0f4f8148dbed7e56029/deep_learning_utils.py#L529). These functions were crucial for creating and compiling the model. They are based on the [Braindecode docs](https://braindecode.org/stable/auto_examples/plot_regression.html).
 
 This is in the notebook `Deep_learning_braindecode.ipynb`
